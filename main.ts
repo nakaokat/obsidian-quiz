@@ -1,4 +1,4 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, MarkdownPostProcessorContext } from 'obsidian';
 
 // Remember to rename these classes and interfaces!
 
@@ -13,8 +13,31 @@ const DEFAULT_SETTINGS: QuizPluginSettings = {
 export default class QuizPlugin extends Plugin {
 	settings: QuizPluginSettings;
 
+	async processQuizBlock(source: string, el: HTMLElement, ctx: MarkdownPostProcessorContext) {
+		const [question, answer] = source.split('---').map(s => s.trim());
+		const questionDiv = el.createDiv();
+		questionDiv.setText(question);
+		
+		const answerDiv = el.createDiv({ cls: 'hidden-answer' });
+		answerDiv.setText(answer);
+		
+		const toggleButton = el.createEl('button', { text: 'Show Answer' });
+		toggleButton.addEventListener('click', () => {
+			if (answerDiv.classList.contains('hidden-answer')) {
+				answerDiv.classList.remove('hidden-answer');
+				toggleButton.innerText = 'Hide Answer';
+			} else {
+				answerDiv.classList.add('hidden-answer');
+				toggleButton.innerText = 'Show Answer';
+			}
+		});
+	}
+	
 	async onload() {
 		await this.loadSettings();
+    	
+		this.registerMarkdownCodeBlockProcessor('quiz', this.processQuizBlock.bind(this));
+
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
