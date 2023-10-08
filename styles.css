@@ -10,3 +10,22 @@ If your plugin does not need CSS, delete this file.
 .hidden-answer {
     display: none;
 }
+
+/* container */
+.quiz-container {
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 12px;
+	box-shadow: 0 0 10px #ccc;
+}
+
+.quiz-question {
+	padding: 4px;
+}
+
+.quiz-answer {
+	margin : 8px;
+	padding: 4px 4px 4px 12px;
+	border-left: 1px solid #ccc;
+}
