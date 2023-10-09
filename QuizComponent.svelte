@@ -13,7 +13,7 @@
 		<div class="quiz-answer">{answer}</div>
 	{/if}
 	<button class="quiz-button" on:click={toggle} >
-		{shouldShowAnswer ? 'Hide Answer' : 'shouldShowAnswer Answer'}
+		{shouldShowAnswer ? 'Hide Answer' : 'Show Answer'}
 	</button>
 </div>
 
