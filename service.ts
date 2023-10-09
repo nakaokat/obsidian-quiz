@@ -16,7 +16,7 @@ const sourceToMCQ = (source: string): mcq => {
 	const [question, choices, answer] = source.split('---').map(s => s.trim());
 	return {
 		question: question,
-		choices: choices.split(',').map(s => s.trim()),
+		choices: choices.split('\n').map(s => s.trim()),
 		answer: answer
 	};
 }
