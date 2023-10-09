@@ -24,5 +24,16 @@ type answerView = {
 }
 // quiz view : sum type of initial view and answer view
 type quizView = initialView | answerView;
+
+// 選択問題
+// 複数の選択肢と、１つの正解を持つ
+// multiple choice question
+type choice = string
+type mcq = {
+	question: question;
+	choices: choice[];
+	answer: answer;
+}
+
 // export types 
-export type {quiz, quizView, initialView, answerView};
+export type {quiz, quizView, initialView, answerView, mcq};
