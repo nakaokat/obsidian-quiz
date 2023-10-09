@@ -31,8 +31,8 @@ type quizView = initialView | answerView;
 type choice = string
 type mcq = {
 	question: question;
-	choices: choice[];
 	answer: answer;
+	choices: choice[];
 }
 
 // export types 
