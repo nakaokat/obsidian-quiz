@@ -17,6 +17,7 @@ If your plugin does not need CSS, delete this file.
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 12px;
+	box-shadow: 0 0 10px #ccc;
 }
 
 .quiz-question {

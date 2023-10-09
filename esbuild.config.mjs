@@ -1,8 +1,6 @@
 import esbuild from "esbuild";
 import process from "process";
 import builtins from "builtin-modules";
-import esbuildSvelte from "esbuild-svelte";
-import sveltePreprocess from "svelte-preprocess";
 
 const banner =
 `/*
@@ -40,25 +38,7 @@ const context = await esbuild.context({
 	sourcemap: prod ? false : "inline",
 	treeShaking: true,
 	outfile: "main.js",
-	plugins: [
-		esbuildSvelte({
-			compilerOptions: { css: true },
-			preprocess: sveltePreprocess(),
-		}),
-	],
 });
-
-esbuild
-.build({
-  plugins: [
-	esbuildSvelte({
-	  compilerOptions: { css: true },
-	  preprocess: sveltePreprocess(),
-	}),
-  ],
-  // ...
-})
-.catch(() => process.exit(1));
 
 if (prod) {
 	await context.rebuild();
