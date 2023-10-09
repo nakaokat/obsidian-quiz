@@ -1,6 +1,6 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, MarkdownPostProcessorContext } from 'obsidian';
 
-import { processQuizBlock } from './service';
+import { processQuizBlock, processMCQBlock } from './service';
 // Remember to rename these classes and interfaces!
 
 interface QuizPluginSettings {
@@ -18,6 +18,7 @@ export default class QuizPlugin extends Plugin {
 		await this.loadSettings();
 
 		this.registerMarkdownCodeBlockProcessor('quiz', processQuizBlock.bind(this));
+		this.registerMarkdownCodeBlockProcessor('mcq', processMCQBlock.bind(this));
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
