@@ -1,4 +1,4 @@
-import { App, Modal, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { App, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 import { processQuizBlock, processMCQBlock } from './service';
 
@@ -54,7 +54,7 @@ class QuizSettingTab extends PluginSettingTab {
 	}
 
 	display(): void {
-		const {containerEl} = this;
+		const { containerEl } = this;
 
 		containerEl.empty();
 

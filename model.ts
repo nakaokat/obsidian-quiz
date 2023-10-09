@@ -23,4 +23,4 @@ type mcq = {
 	choices: choice[];
 }
 
-export type {quiz, mcq};
+export type { quiz, mcq };

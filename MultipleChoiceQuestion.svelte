@@ -3,7 +3,7 @@
 	export let answer: string;
 	export let choices: string[];
 	let selectedChoice: string | null = null;
-	
+
 	let handleChoiceChange = (event) => {
 		const target = event.target;
 		if (target.checked) {
