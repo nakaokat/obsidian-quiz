@@ -1,4 +1,4 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, MarkdownPostProcessorContext } from 'obsidian';
+import { App, Editor, MarkdownView, Modal, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 import { processQuizBlock, processMCQBlock } from './service';
 // Remember to rename these classes and interfaces!
@@ -19,14 +19,6 @@ export default class QuizPlugin extends Plugin {
 
 		this.registerMarkdownCodeBlockProcessor('quiz', processQuizBlock.bind(this));
 		this.registerMarkdownCodeBlockProcessor('mcq', processMCQBlock.bind(this));
-
-		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
-			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
-		});
-		// Perform additional things with the ribbon
-		ribbonIconEl.addClass('my-plugin-ribbon-class');
 
 		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
 		const statusBarItemEl = this.addStatusBarItem();
