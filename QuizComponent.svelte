@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let question: string;
 	export let answer: string;
-	let shouldShowAnswer = false;	
+	let shouldShowAnswer = false;
 	const toggle = () => {
 		shouldShowAnswer = !shouldShowAnswer;
 	};
@@ -12,8 +12,8 @@
 	{#if shouldShowAnswer}
 		<div class="quiz-answer">{answer}</div>
 	{/if}
-	<button class="quiz-button" on:click={toggle} >
-		{shouldShowAnswer ? 'Hide Answer' : 'Show Answer'}
+	<button class="quiz-button" on:click={toggle}>
+		{shouldShowAnswer ? "Hide Answer" : "Show Answer"}
 	</button>
 </div>
 
