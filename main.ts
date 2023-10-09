@@ -1,7 +1,6 @@
 import { App, Modal, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 import { processQuizBlock, processMCQBlock } from './service';
-// Remember to rename these classes and interfaces!
 
 interface QuizPluginSettings {
 	mySetting: string;
@@ -21,7 +20,7 @@ export default class QuizPlugin extends Plugin {
 		this.registerMarkdownCodeBlockProcessor('mcq', processMCQBlock.bind(this));
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+		this.addSettingTab(new QuizSettingTab(this.app, this));
 
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.
@@ -46,7 +45,7 @@ export default class QuizPlugin extends Plugin {
 	}
 }
 
-class SampleSettingTab extends PluginSettingTab {
+class QuizSettingTab extends PluginSettingTab {
 	plugin: QuizPlugin;
 
 	constructor(app: App, plugin: QuizPlugin) {
