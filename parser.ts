@@ -9,7 +9,7 @@ const sourceToQuiz = (source: string): quiz => {
 }
 
 const sourceToMCQ = (source: string): mcq => {
-	const [question, answer, choices] = source.split('---').map(s => s.trim());
+	const [question, answer, choices] = source.split(/\n-{3,}\n/).map(s => s.trim());
 	return {
 		question: question,
 		choices: choices.split('\n').map(s => s.trim()),
