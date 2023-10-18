@@ -1,25 +1,7 @@
 import { MarkdownPostProcessorContext } from 'obsidian';
-import { quiz, mcq } from './model';
+import { sourceToQuiz, sourceToMCQ } from './parser';
 import QuizComponent from './QuizComponent.svelte';
 import MultipleChoiceQuestion from './MultipleChoiceQuestion.svelte';
-
-
-const sourceToQuiz = (source: string): quiz => {
-	const [question, answer] = source.split('---').map(s => s.trim());
-	return {
-		question: question,
-		answer: answer
-	};
-}
-
-const sourceToMCQ = (source: string): mcq => {
-	const [question, answer, choices] = source.split('---').map(s => s.trim());
-	return {
-		question: question,
-		choices: choices.split('\n').map(s => s.trim()),
-		answer: answer
-	};
-}
 
 export async function processQuizBlock(source: string, el: HTMLElement, ctx: MarkdownPostProcessorContext) {
 	const quiz = sourceToQuiz(source);
