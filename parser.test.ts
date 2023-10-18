@@ -75,6 +75,15 @@ describe("sourceToMCQ", () => {
 			},
 			"comment": "ハイフンが4つ以上の場合も分割できる"
 		},
+		{
+			"source": "What is the capital of France?\n----\nParis\n-----\n\nParis\n\nTokyo\n\n\nNew York",
+			"expected": {
+				"question": "What is the capital of France?",
+				"answer": "Paris",
+				"choices": ["Paris", "Tokyo", "New York"]
+			},
+			"comment": "選択肢が空行で区切られている場合、空の選択肢は取り除かれる"
+		},
 	]
 
 	test.each(cases)("正常系 %p", (c) => {
