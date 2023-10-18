@@ -1,4 +1,4 @@
-import { sourceToQuiz } from "./parser";
+import { sourceToQuiz, sourceToMCQ } from "./parser";
 import { describe, expect, it, test } from "@jest/globals";
 
 describe("sourceToQuiz", () => {
@@ -36,3 +36,40 @@ describe("sourceToQuiz", () => {
 	});
 });
 
+
+describe("sourceToMCQ", () => {
+	const cases = [
+		{
+			"source": "What is the capital of France?\n---\nParis\n---\nParis\nTokyo\nNew York",
+			"expected": {
+				"question": "What is the capital of France?",
+				"answer": "Paris",
+				"choices": ["Paris", "Tokyo", "New York"]
+			},
+			"comment": "3つの選択肢がある場合"
+		},
+		{
+			"source": "What is the capital of France?\n---\nParis\n---\nParis\nTokyo\nNew York\nLondon",
+			"expected": {
+				"question": "What is the capital of France?",
+				"answer": "Paris",
+				"choices": ["Paris", "Tokyo", "New York", "London"]
+			},
+			"comment": "4つの選択肢がある場合"
+		},
+		{
+			"source": "What is the capital of France?\n---\nParis\n---\nParis\n",
+			"expected": {
+				"question": "What is the capital of France?",
+				"answer": "Paris",
+				"choices": ["Paris"]
+			},
+			"comment": "1つの選択肢がある場合"
+		},
+	]
+
+	test.each(cases)("正常系 %p", (c) => {
+		const actual = sourceToMCQ(c.source);
+		expect(actual).toEqual(c.expected);
+	});
+});
