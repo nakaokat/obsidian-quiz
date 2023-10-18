@@ -1,7 +1,7 @@
 import { quiz, mcq } from './model';
 
 const sourceToQuiz = (source: string): quiz => {
-	const [question, answer] = source.split('---').map(s => s.trim());
+	const [question, answer] = source.split(/\n-{3,}\n/).map(s => s.trim());
 	return {
 		question: question,
 		answer: answer

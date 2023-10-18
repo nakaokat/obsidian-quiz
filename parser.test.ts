@@ -1,5 +1,5 @@
 import { sourceToQuiz } from "./parser";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it, test } from "@jest/globals";
 
 describe("sourceToQuiz", () => {
 	const cases = [
@@ -20,13 +20,19 @@ describe("sourceToQuiz", () => {
 			},
 			"comment": "---で終わってもOK"
 		},
+		// ハイフンの数が4つ以上の場合も分割できる
+		{
+			"source": "What is the capital of France?\n----\nParis",
+			"expected": {
+				"question": "What is the capital of France?",
+				"answer": "Paris"
+			},
+		}
 	]
 
-	it("正常系", () => {
-		cases.forEach(c => {
-			const actual = sourceToQuiz(c.source);
-			expect(actual).toEqual(c.expected);
-		});
+	test.each(cases)("正常系 %p", (c) => {
+		const actual = sourceToQuiz(c.source);
+		expect(actual).toEqual(c.expected);
 	});
 });
 
